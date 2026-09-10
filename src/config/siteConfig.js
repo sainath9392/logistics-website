@@ -74,7 +74,7 @@ export const siteConfig = {
     ]
   },
 
-  // Hero Carousel Slides (All 8 Services with clean local assets)
+  // Hero Carousel Slides (All Services with clean local assets)
   heroSlides: [
     {
       id: "full-truck-load",
