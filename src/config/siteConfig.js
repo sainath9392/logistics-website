@@ -170,7 +170,7 @@ export const siteConfig = {
     }
   ],
 
-  // The 8 Core Services
+  // Core Logistics Services
   services: [
     {
       id: "full-truck-load",
