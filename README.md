@@ -8,7 +8,7 @@ A modern, high-performance, minimalistic B2B enterprise logistics website built 
 
 - **Centralized Single-Source-of-Truth Branding (`src/config/siteConfig.js`):**
   - Change company name, tagline, phone numbers, email, physical address, and logo in one place to update the entire site automatically.
-- **8 Core Logistics Services:**
+- **Core Logistics Services:**
   - Full Truck Load (FTL)
   - Partial Truck Load (PTL)
   - Warehousing
@@ -22,7 +22,7 @@ A modern, high-performance, minimalistic B2B enterprise logistics website built 
   - Freight Booking & Instant Quote Modal (`EnquireModal`).
 - **Smooth Navigation & Conversion:**
   - Sticky glassmorphic Navbar with responsive dropdowns.
-  - Auto-sliding and manual Hero carousel featuring all 8 services.
+  - Auto-sliding and manual Hero carousel featuring all services.
   - Mobile floating quick-action dock (Call, WhatsApp, Book).
   - Desktop vertical floating button suite.
   - Fully responsive across mobile, tablet, laptop, and widescreen displays.
