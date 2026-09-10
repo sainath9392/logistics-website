@@ -1,0 +1,267 @@
+import React, { useState, useEffect } from 'react';
+import { siteConfig } from '../config/siteConfig';
+import { X, Truck, CheckCircle2, Send, MapPin, Calendar, Building, Phone, Mail, User } from 'lucide-react';
+
+export default function EnquireModal({ isOpen, onClose, preselectedService = "" }) {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    company: '',
+    serviceType: preselectedService || 'Full Truck Load (FTL)',
+    origin: '',
+    destination: '',
+    cargoDetails: '',
+    expectedDate: '',
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (preselectedService) {
+      setFormData(prev => ({ ...prev, serviceType: preselectedService }));
+    }
+  }, [preselectedService]);
+
+  if (!isOpen) return null;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    // Simulate submission to sales desk
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 800);
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    onClose();
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6">
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity"
+        onClick={onClose}
+      ></div>
+
+      {/* Modal Dialog with strict bounds */}
+      <div className="relative w-full max-w-xl sm:max-w-2xl max-h-[88vh] flex flex-col bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-100 overflow-hidden z-10 animate-slide-up">
+        
+        {/* Header */}
+        <div className="bg-gradient-to-r from-navy-950 to-brand-900 px-5 sm:px-7 py-4 sm:py-5 text-white flex items-center justify-between flex-shrink-0">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 rounded-xl bg-white/10 text-white">
+              <Truck className="w-5 h-5 text-accent-orange" />
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold">Book a Truck / Request Freight Quote</h3>
+              <p className="text-xs text-slate-300 mt-0.5">Quick response guaranteed within 30 minutes</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            aria-label="Close form modal"
+            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Modal Form or Success State */}
+        <div className="p-5 sm:p-7 flex-1 overflow-y-auto overscroll-contain">
+          {submitted ? (
+            <div className="text-center py-10 space-y-4">
+              <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-10 h-10" />
+              </div>
+              <h4 className="text-2xl font-bold text-slate-900">Inquiry Dispatched Successfully!</h4>
+              <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                Thank you, <span className="font-semibold text-slate-800">{formData.name}</span>. Our fleet dispatcher has received your request for <strong>{formData.serviceType}</strong> and will contact you at <strong>{formData.phone}</strong> shortly.
+              </p>
+              <div className="pt-4">
+                <button
+                  onClick={handleReset}
+                  className="px-6 py-2.5 rounded-xl bg-brand-700 text-white text-sm font-semibold hover:bg-brand-800 shadow-md"
+                >
+                  Done
+                </button>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              
+              {/* Service Selection */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Required Service
+                </label>
+                <select
+                  name="serviceType"
+                  value={formData.serviceType}
+                  onChange={handleChange}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium"
+                >
+                  <option value="Full Truck Load (FTL)">Full Truck Load (FTL)</option>
+                  <option value="Partial Truck Load (PTL)">Partial Truck Load (PTL)</option>
+                  <option value="Warehousing">Warehousing & Storage</option>
+                  <option value="Distribution">Distribution & Last-Mile</option>
+                  <option value="Reverse Logistics">Reverse Logistics & Returns</option>
+                  <option value="Cold Storage-Transportation">Cold Storage-Transportation</option>
+                  <option value="Cold Storage-Warehousing">Cold Storage-Warehousing</option>
+                  <option value="Over Dimensional Cargo (ODC)">Over Dimensional Cargo (ODC)</option>
+                </select>
+              </div>
+
+              {/* Transit Route Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center">
+                    <MapPin className="w-3.5 h-3.5 mr-1 text-brand-600" />
+                    <span>Origin City / Pincode</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    name="origin"
+                    value={formData.origin}
+                    onChange={handleChange}
+                    placeholder="e.g. Coimbatore, TN"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center">
+                    <MapPin className="w-3.5 h-3.5 mr-1 text-brand-600" />
+                    <span>Destination City / Pincode</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    name="destination"
+                    value={formData.destination}
+                    onChange={handleChange}
+                    placeholder="e.g. Pune, MH / Mumbai"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  />
+                </div>
+              </div>
+
+              {/* Contact Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center">
+                    <User className="w-3.5 h-3.5 mr-1 text-slate-400" />
+                    <span>Your Full Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="e.g. S. Kumar"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center">
+                    <Phone className="w-3.5 h-3.5 mr-1 text-slate-400" />
+                    <span>Contact Phone</span>
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+91 98765 43210"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center">
+                    <Mail className="w-3.5 h-3.5 mr-1 text-slate-400" />
+                    <span>Work Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="name@company.com"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center">
+                    <Building className="w-3.5 h-3.5 mr-1 text-slate-400" />
+                    <span>Company Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="e.g. Manufacturing Ltd"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  />
+                </div>
+              </div>
+
+              {/* Cargo Weight & Specifications */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Cargo Description & Estimated Weight (MT)
+                </label>
+                <textarea
+                  rows="2"
+                  name="cargoDetails"
+                  value={formData.cargoDetails}
+                  onChange={handleChange}
+                  placeholder="e.g. 15 MT auto components, required 32ft MX container truck..."
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                ></textarea>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-3.5 rounded-xl bg-accent-orange hover:bg-orange-700 text-white font-bold text-sm shadow-lg shadow-orange-600/30 flex items-center justify-center transition-all disabled:opacity-75"
+                >
+                  {loading ? (
+                    <span>Submitting Inquiry...</span>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 mr-2" />
+                      <span>Submit Freight Booking Request</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+}
