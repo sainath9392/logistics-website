@@ -113,6 +113,7 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button 
+                onClick={(e) => handleNavClick(e, '#services')}
                 className="flex items-center px-3.5 py-2 text-sm font-medium text-slate-700 hover:text-brand-700 rounded-lg transition-colors group"
               >
                 <span>Services</span>
@@ -169,6 +170,7 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button 
+                onClick={(e) => handleNavClick(e, '#industries')}
                 className="flex items-center px-3.5 py-2 text-sm font-medium text-slate-700 hover:text-brand-700 rounded-lg transition-colors group"
               >
                 <span>Industries</span>

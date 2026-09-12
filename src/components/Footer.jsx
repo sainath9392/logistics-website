@@ -125,17 +125,11 @@ export default function Footer({ onOpenEnquire, onSelectService }) {
         </div>
       </div>
 
-      {/* Bottom Sub-footer */}
       <div className="border-t border-slate-100 bg-slate-50/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center text-xs text-slate-500">
           <p>
             © {currentYear} {siteConfig.company.legalName}. All rights reserved.
           </p>
-          <div className="flex space-x-6">
-            <a href="#privacy" className="hover:text-slate-800 transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-slate-800 transition-colors">Terms of Service</a>
-            <a href="#compliance" className="hover:text-slate-800 transition-colors">Carrier Compliance</a>
-          </div>
         </div>
       </div>
 

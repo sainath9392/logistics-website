@@ -45,7 +45,7 @@ export const siteConfig = {
     city: "Bengaluru",
     pincode: "560040",
     country: "India",
-    googleMapsUrl: "https://maps.google.com/?q=Valagerehalli,K+S+Town,Bengaluru+560040",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=S-05+Silver+Waves+Prakruthi+Apartment+Valagerehalli+K+S+Town+Bengaluru+560040+India",
     whatsappNumber: "+91 98863 45860",
     whatsappLink: "https://wa.me/919886345860?text=Hello%20Chrome%20Sai%20Express%2C%20I%20want%20to%20book%20a%20truck%20or%20get%20a%20quote.",
     workingHours: "24/7 Customer Support & Dispatch",
@@ -328,8 +328,6 @@ export const siteConfig = {
       { name: "Services", href: "#services" },
       { name: "Industries", href: "#industries" },
       { name: "Instant Quote", href: "#quote" },
-      { name: "Terms & Conditions", href: "#terms" },
-      { name: "Privacy Policy", href: "#privacy" },
     ],
     copyright: `© ${new Date().getFullYear()} Chrome Sai Express Service. All rights reserved.`
   }
