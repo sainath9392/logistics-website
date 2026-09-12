@@ -28,8 +28,7 @@ const iconMap = {
 export default function ServicesSection({ onSelectService, onOpenEnquire }) {
   return (
     <section id="services" className="py-12 sm:py-16 lg:py-20 bg-[#fafbfc]">
-      {/* Expanded wide container for large and wide screens */}
-      <div className="max-w-[1680px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         
         <SectionHeading
           badge="Our Core Offerings"
@@ -37,14 +36,31 @@ export default function ServicesSection({ onSelectService, onOpenEnquire }) {
           subtitle="Simple, fast, and dependable freight solutions tailored for your business needs across India."
         />
 
-        {/* 8-Card Grid: Perfectly proportioned 4-columns x 2-rows on large screens */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 xl:gap-6">
-          {siteConfig.services.map((service) => {
+        {/*
+          5-card layout:
+          - Mobile:  1 column
+          - Tablet:  2 columns
+          - Desktop: 3 cols row 1 (items 1-3), then 2 cols centered row 2 (items 4-5)
+          
+          Trick: use a 6-col grid on lg. Items 1-3 each span 2 cols (fills row).
+          Items 4 & 5 each span 2 cols but start at col 2 & 4 (centered with empty col on each side).
+        */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-5 xl:gap-6">
+          {siteConfig.services.map((service, index) => {
             const IconComp = iconMap[service.icon] || Truck;
+
+            // On desktop (6-col grid):
+            // Items 0,1,2 → each spans 2 cols → fills 6 cols (full row)
+            // Item 3 → span 2, start at col 2 (leaves 1 empty col left)
+            // Item 4 → span 2, start at col 4 (leaves 1 empty col right)
+            let lgColClass = 'lg:col-span-2'; // default: 3 per row
+            if (index === 3) lgColClass = 'lg:col-span-2 lg:col-start-2';
+            if (index === 4) lgColClass = 'lg:col-span-2 lg:col-start-4';
+
             return (
               <div
                 key={service.id}
-                className="group relative bg-white rounded-2xl xl:rounded-3xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-brand-200 transition-all duration-300 flex flex-col justify-between"
+                className={`group relative bg-white rounded-2xl xl:rounded-3xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-brand-200 transition-all duration-300 flex flex-col justify-between sm:col-span-1 ${lgColClass}`}
               >
                 <div>
                   {/* Service Thumbnail */}
@@ -60,7 +76,7 @@ export default function ServicesSection({ onSelectService, onOpenEnquire }) {
                     
                     {/* Badge Icon */}
                     <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 p-2 rounded-xl bg-white/95 backdrop-blur-md text-brand-700 shadow-sm">
-                      <IconComp className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                      <IconComp className="w-4 h-4" />
                     </div>
 
                     {/* Title on Image overlay */}

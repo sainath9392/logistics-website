@@ -3,44 +3,51 @@
  * SINGLE SOURCE OF TRUTH (CONFIG) FOR THE ENTIRE WEBSITE
  * ==============================================================================
  * All images are stored locally in /assets/images/
- * Plain, simple English copy so anyone immediately understands the offerings.
+ * Update only this file to reflect brand, contact, services, and industries.
  * ==============================================================================
  */
 
 export const siteConfig = {
   // Brand Identity
   company: {
-    name: "Apex Logistics & Supply Chain",
-    shortName: "Apex Logistics",
-    legalName: "Apex Logistics Solutions Pvt Ltd",
+    name: "Chrome Sai Express Service",
+    shortName: "Chrome Sai",
+    legalName: "Chrome Sai Express Service",
     tagline: "Reliable Logistics & Transportation Services",
-    slogan: "We provide fast, secure, and affordable freight transport, warehousing, and cold storage solutions across India.",
+    slogan: "We provide fast, secure, and affordable freight transport across India.",
     badgeText: "Trusted Pan-India Transport Partner",
+    title: "Delivering First",
     establishedYear: 2021,
-    
-    // Logo configuration
+
+    mission: "Delivering seamless logistics solutions for businesses across diverse industries.",
+    vision: "To be India's most trusted logistics partner, driving innovation in transportation.",
+
+    // Logo configuration — update imageSrc to change everywhere at once
     logo: {
-      type: "text", 
-      textPrimary: "APEX",
-      textSecondary: "LOGISTICS",
+      type: "image",
+      textPrimary: "CS",
+      textSecondary: "EXPRESS",
       imageSrc: "/assets/images/logo.png",
-      alt: "Apex Logistics Logo",
+      alt: "Chrome Sai Express Service Logo",
     }
   },
 
   // Contact Channels
   contact: {
-    phone: "+91 94421 88000",
-    phoneRaw: "+919442188000",
-    email: "contact@apexlogistics.in",
-    salesEmail: "booking@apexlogistics.in",
-    supportEmail: "support@apexlogistics.in",
-    address: "Logistics Hub, Airport Expressway, Coimbatore, Tamil Nadu 641014, India",
-    city: "Coimbatore",
+    phone: "+91 98863 45860",
+    phoneRaw: "+919886345860",
+    email: "karthikeyan@chromesai.in",
+    salesEmail: "karthikeyan@chromesai.in",
+    supportEmail: "karthikeyan@chromesai.in",
+    address: "S-05, Silver Waves Prakruthi Apartment, Valagerehalli, K S Town, Bengaluru 560040, India",
+    addressLine1: "S-05, Silver Waves Prakruthi Apartment",
+    addressLine2: "Valagerehalli, K S Town",
+    city: "Bengaluru",
+    pincode: "560040",
     country: "India",
-    googleMapsUrl: "https://maps.google.com/?q=Coimbatore+Airport",
-    whatsappNumber: "+91 94421 88000",
-    whatsappLink: "https://wa.me/919442188000?text=Hello%20Apex%20Logistics%2C%20I%20want%20to%20book%20a%20truck%20or%20get%20a%20quote.",
+    googleMapsUrl: "https://maps.google.com/?q=Valagerehalli,K+S+Town,Bengaluru+560040",
+    whatsappNumber: "+91 98863 45860",
+    whatsappLink: "https://wa.me/919886345860?text=Hello%20Chrome%20Sai%20Express%2C%20I%20want%20to%20book%20a%20truck%20or%20get%20a%20quote.",
     workingHours: "24/7 Customer Support & Dispatch",
   },
 
@@ -56,17 +63,17 @@ export const siteConfig = {
   navigation: {
     main: [
       { name: "Home", href: "#home" },
-      { 
-        name: "Services", 
+      {
+        name: "Services",
         href: "#services",
         hasDropdown: true,
-        dropdownKey: "services" 
+        dropdownKey: "services"
       },
-      { 
-        name: "Industries", 
+      {
+        name: "Industries",
         href: "#industries",
         hasDropdown: true,
-        dropdownKey: "industries" 
+        dropdownKey: "industries"
       },
       { name: "Why Us", href: "#why-us" },
       { name: "About", href: "#about" },
@@ -74,12 +81,12 @@ export const siteConfig = {
     ]
   },
 
-  // Hero Carousel Slides (All Services with clean local assets)
+  // Hero Carousel Slides — one per service
   heroSlides: [
     {
       id: "full-truck-load",
       title: "Full Truck Load (FTL)",
-      subtitle: "Dedicated trucks exclusively for your bulk shipments with direct, non-stop transit.",
+      subtitle: "Dedicated trucks exclusively for your bulk shipments with direct, non-stop transit across India.",
       image: "/assets/images/service-ftl.jpg",
       tag: "Bulk Transport",
       ctaText: "Book FTL Truck",
@@ -91,14 +98,6 @@ export const siteConfig = {
       image: "/assets/images/hero-ftl.jpg",
       tag: "Shared Freight",
       ctaText: "Get PTL Quote",
-    },
-    {
-      id: "warehousing",
-      title: "Warehousing",
-      subtitle: "Safe storage and inventory management solutions with 24/7 CCTV and computer tracking.",
-      image: "/assets/images/service-3pl.jpg",
-      tag: "Safe Storage",
-      ctaText: "View Warehouses",
     },
     {
       id: "distribution",
@@ -115,22 +114,6 @@ export const siteConfig = {
       image: "/assets/images/service-multimodal.jpg",
       tag: "Returns Management",
       ctaText: "Manage Returns",
-    },
-    {
-      id: "cold-storage-transportation",
-      title: "Cold Storage-Transportation",
-      subtitle: "Specialized refrigerated transport for temperature-sensitive food and pharmaceuticals.",
-      image: "/assets/images/ind-pharma.jpg",
-      tag: "Reefer Fleet",
-      ctaText: "Book Cold Transit",
-    },
-    {
-      id: "cold-storage-warehousing",
-      title: "Cold Storage-Warehousing",
-      subtitle: "Temperature-controlled multi-chamber storage for perishable and frozen goods.",
-      image: "/assets/images/hero-warehouse.jpg",
-      tag: "Cold Warehousing",
-      ctaText: "Cold Storage Space",
     },
     {
       id: "over-dimensional-cargo",
@@ -170,18 +153,18 @@ export const siteConfig = {
     }
   ],
 
-  // Core Logistics Services
+  // Core Logistics Services — exactly 5
   services: [
     {
       id: "full-truck-load",
       title: "Full Truck Load (FTL)",
       shortDesc: "Dedicated trucks for your bulk shipments.",
-      fullDesc: "Get an entire truck reserved exclusively for your goods. Ideal for large consignments, factory dispatches, and bulk orders with direct pickup and direct delivery without stops.",
+      fullDesc: "Get an entire truck reserved exclusively for your goods. Ideal for large consignments, factory dispatches, and bulk orders with direct pickup and delivery without any stops in between.",
       image: "/assets/images/service-ftl.jpg",
       icon: "Truck",
       features: [
         "Dedicated truck exclusively for your goods",
-        "Direct point-to-point delivery with no unloading on way",
+        "Direct point-to-point delivery with no unloading on the way",
         "24/7 live GPS location tracking on your phone",
         "Available in all container and open-body sizes"
       ],
@@ -196,7 +179,7 @@ export const siteConfig = {
       id: "partial-truck-load",
       title: "Partial Truck Load (PTL)",
       shortDesc: "Cost-effective shared truck space for smaller loads.",
-      fullDesc: "Only have a few pallets or boxes? Don't pay for an entire truck. With our Partial Truck Load (PTL) service, you share truck space with other shippers and only pay for the exact volume or weight you use.",
+      fullDesc: "Only have a few pallets or boxes? Don't pay for an entire truck. With our PTL service, you share truck space with other shippers and only pay for the exact volume or weight you use.",
       image: "/assets/images/hero-ftl.jpg",
       icon: "Package",
       features: [
@@ -210,26 +193,6 @@ export const siteConfig = {
         { step: "02", title: "Pickup & Consolidation", desc: "We collect your shipment and safely consolidate it onto scheduled routes." },
         { step: "03", title: "Shared Highway Haul", desc: "Regular transit with automated milestone updates." },
         { step: "04", title: "Doorstep Delivery", desc: "Prompt delivery directly to your customer's doorstep." }
-      ]
-    },
-    {
-      id: "warehousing",
-      title: "Warehousing",
-      shortDesc: "Safe storage and inventory management solutions.",
-      fullDesc: "Store your commercial goods safely in our modern, well-maintained warehouses. We provide pallet racking, computerized inventory records, CCTV security, and easy stock dispatch whenever you need it.",
-      image: "/assets/images/service-3pl.jpg",
-      icon: "Warehouse",
-      features: [
-        "Clean, dry, and fire-safe storage space",
-        "24/7 CCTV surveillance and security guards",
-        "Computerized stock management & barcode tracking",
-        "Flexible short-term and long-term rental options"
-      ],
-      workflow: [
-        { step: "01", title: "Goods Receiving", desc: "Careful unloading, counting, and quality checking upon arrival." },
-        { step: "02", title: "Safe Placement", desc: "Items stored securely on pallet racks with assigned bin numbers." },
-        { step: "03", title: "Inventory Report", desc: "Real-time stock reports provided so you always know what you have." },
-        { step: "04", title: "Fast Dispatch", desc: "Instant order picking and loading whenever you need goods shipped out." }
       ]
     },
     {
@@ -273,46 +236,6 @@ export const siteConfig = {
       ]
     },
     {
-      id: "cold-storage-transportation",
-      title: "Cold Storage-Transportation",
-      shortDesc: "Specialized transport for temperature-sensitive goods.",
-      fullDesc: "Refrigerated and temperature-controlled trucks (reefers) designed to keep dairy products, pharmaceuticals, fresh fruits, vegetables, and frozen items in perfect condition throughout the trip.",
-      image: "/assets/images/ind-pharma.jpg",
-      icon: "ThermometerSnowflake",
-      features: [
-        "Refrigerated reefer containers (-25°C to +25°C)",
-        "Continuous digital temperature monitoring and logging",
-        "Pre-cooled containers before loading",
-        "Backup cooling units for 100% reliability"
-      ],
-      workflow: [
-        { step: "01", title: "Pre-Cooling", desc: "Vehicle chamber pre-cooled to your required temperature setting." },
-        { step: "02", title: "Cold Loading", desc: "Quick dock transfer to prevent temperature fluctuations." },
-        { step: "03", title: "Monitored Journey", desc: "Real-time temperature telemetry tracked throughout the highway route." },
-        { step: "04", title: "Temp-Verified Handover", desc: "Delivery completed with temperature log printout for full assurance." }
-      ]
-    },
-    {
-      id: "cold-storage-warehousing",
-      title: "Cold Storage-Warehousing",
-      shortDesc: "Temperature-controlled storage for perishable goods.",
-      fullDesc: "Dedicated cold storage facilities with humidity and temperature controls. Perfect for preserving seasonal crops, dairy, frozen foods, and medical supplies with zero spoilage.",
-      image: "/assets/images/hero-warehouse.jpg",
-      icon: "Snowflake",
-      features: [
-        "Multi-temperature chambers (Chilled, Frozen, Ambient)",
-        "Uninterrupted 24/7 power backup with dual generators",
-        "Strict hygiene and food-grade safety standards",
-        "FIFO (First-In, First-Out) inventory rotation"
-      ],
-      workflow: [
-        { step: "01", title: "Temperature Check In", desc: "Product core temperature checked upon arrival at unloading dock." },
-        { step: "02", title: "Chamber Storage", desc: "Stored in dedicated temperature-controlled room based on product specs." },
-        { step: "03", title: "Daily Temp Audit", desc: "Automated alerts if any chamber temperature shifts by even 1 degree." },
-        { step: "04", title: "Chilled Outbound", desc: "Loaded directly into refrigerated trucks for onward journey." }
-      ]
-    },
-    {
       id: "over-dimensional-cargo",
       title: "Over Dimensional Cargo (ODC)",
       shortDesc: "Transportation for oversized and heavy cargo.",
@@ -334,7 +257,7 @@ export const siteConfig = {
     }
   ],
 
-  // Industries We Serve
+  // Industries We Serve — exactly 5
   industries: [
     {
       id: "manufacturing",
@@ -358,23 +281,16 @@ export const siteConfig = {
       icon: "Box"
     },
     {
-      id: "chemical",
-      title: "Chemicals & Industrial Materials",
-      desc: "Safety-tested trucks with trained drivers for safe transport of industrial chemicals.",
+      id: "industrial",
+      title: "Industrial Materials",
+      desc: "Safety-tested trucks with trained drivers for the secure transport of industrial raw materials and heavy goods.",
       image: "/assets/images/ind-chemical.jpg",
-      icon: "FlaskConical"
+      icon: "Layers"
     },
     {
-      id: "pharma",
-      title: "Pharmaceuticals & Healthcare",
-      desc: "Temperature-monitored refrigerated vehicles for safe transport of medicines and vaccines.",
-      image: "/assets/images/ind-pharma.jpg",
-      icon: "HeartPulse"
-    },
-    {
-      id: "project_cargo",
+      id: "infrastructure",
       title: "Infrastructure & Heavy Projects",
-      desc: "Specialized low-bed trailers for moving heavy construction gear and factory equipment.",
+      desc: "Specialized low-bed trailers for moving heavy construction gear, steel, and factory equipment to project sites.",
       image: "/assets/images/ind-project-cargo.jpg",
       icon: "ShieldAlert"
     }
@@ -406,7 +322,7 @@ export const siteConfig = {
 
   // Footer Content
   footer: {
-    aboutText: "Apex Logistics provides reliable Full Truck Load, Partial Load, Warehousing, Distribution, Cold Chain, and Heavy Cargo transport services across all states in India.",
+    aboutText: "Chrome Sai Express Service provides reliable Full Truck Load, Partial Truck Load, Distribution, Reverse Logistics, and Over Dimensional Cargo transport services across all states in India.",
     quickLinks: [
       { name: "About Us", href: "#about" },
       { name: "Services", href: "#services" },
@@ -415,6 +331,6 @@ export const siteConfig = {
       { name: "Terms & Conditions", href: "#terms" },
       { name: "Privacy Policy", href: "#privacy" },
     ],
-    copyright: `© ${new Date().getFullYear()} Apex Logistics Solutions Pvt Ltd. All rights reserved.`
+    copyright: `© ${new Date().getFullYear()} Chrome Sai Express Service. All rights reserved.`
   }
 };

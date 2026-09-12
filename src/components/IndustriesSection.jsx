@@ -1,12 +1,13 @@
 import React from 'react';
 import { siteConfig } from '../config/siteConfig';
 import SectionHeading from './common/SectionHeading';
-import { Factory, ShoppingBag, Box, FlaskConical, HeartPulse, ShieldAlert, ArrowUpRight } from 'lucide-react';
+import { Factory, ShoppingBag, Box, Layers, FlaskConical, HeartPulse, ShieldAlert, ArrowUpRight } from 'lucide-react';
 
 const iconMap = {
   Factory,
   ShoppingBag,
   Box,
+  Layers,
   FlaskConical,
   HeartPulse,
   ShieldAlert,
@@ -19,18 +20,28 @@ export default function IndustriesSection({ onOpenEnquire }) {
         
         <SectionHeading
           badge="Sector Specialization"
-          title="Industries We Empower"
-          subtitle="Engineered logistics and cold-chain compliance tailored to the strict operational standards of distinct industry verticals."
+          title="Industries We Serve"
+          subtitle="Tailored logistics solutions designed to meet the unique demands of each industry vertical."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {siteConfig.industries.map((ind) => {
+        {/*
+          5-card layout using 6-col grid:
+          Row 1: items 0,1,2 → each span 2 cols
+          Row 2: items 3,4 → span 2 cols each, starting at col 2 & 4 (centered)
+        */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 sm:gap-8">
+          {siteConfig.industries.map((ind, index) => {
             const IconComp = iconMap[ind.icon] || Box;
+
+            let lgColClass = 'lg:col-span-2';
+            if (index === 3) lgColClass = 'lg:col-span-2 lg:col-start-2';
+            if (index === 4) lgColClass = 'lg:col-span-2 lg:col-start-4';
+
             return (
               <div
                 key={ind.id}
                 onClick={onOpenEnquire}
-                className="group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer border border-slate-200/80 transition-all duration-400"
+                className={`group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer border border-slate-200/80 transition-all duration-400 sm:col-span-1 ${lgColClass}`}
               >
                 {/* Background Image */}
                 <img 
@@ -64,7 +75,7 @@ export default function IndustriesSection({ onOpenEnquire }) {
                   </p>
 
                   <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-brand-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span>Inquire for {ind.title}</span>
+                    <span>Enquire for {ind.title}</span>
                     <span className="text-white">→</span>
                   </div>
                 </div>

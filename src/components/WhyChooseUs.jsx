@@ -58,24 +58,33 @@ export default function WhyChooseUs({ onOpenEnquire }) {
               About Our Organization
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-4">
-              Building the Future of Indian Supply Chain Infrastructure
+              {siteConfig.company.title}
             </h3>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-              Founded with the vision to digitize, professionalize, and streamline enterprise B2B transport, {siteConfig.company.name} manages end-to-end movements spanning interstate corridors, regional distribution hubs, and last-mile industrial plants. We combine cutting-edge telematics with an expansive fleet network to deliver on-time, every time.
-            </p>
+            <div className="mb-3">
+              <p className="text-brand-300 text-xs font-bold uppercase tracking-widest mb-1">Our Mission</p>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                {siteConfig.company.mission}
+              </p>
+            </div>
+            <div className="mb-6">
+              <p className="text-brand-300 text-xs font-bold uppercase tracking-widest mb-1">Our Vision</p>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                {siteConfig.company.vision}
+              </p>
+            </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 py-4 border-t border-white/10 text-slate-300">
               <div>
-                <div className="text-2xl font-black text-white">28+</div>
-                <div className="text-xs text-slate-400 mt-0.5">States Covered</div>
+                <div className="text-2xl font-black text-white">Pan India</div>
+                <div className="text-xs text-slate-400 mt-0.5">Network Coverage</div>
               </div>
               <div>
-                <div className="text-2xl font-black text-white">99.2%</div>
-                <div className="text-xs text-slate-400 mt-0.5">SLA Compliance</div>
+                <div className="text-2xl font-black text-white">500+</div>
+                <div className="text-xs text-slate-400 mt-0.5">Happy Clients</div>
               </div>
               <div>
-                <div className="text-2xl font-black text-white">Zero</div>
-                <div className="text-xs text-slate-400 mt-0.5">Pilferage Policy</div>
+                <div className="text-2xl font-black text-white">100%</div>
+                <div className="text-xs text-slate-400 mt-0.5">Safe Delivery</div>
               </div>
             </div>
 

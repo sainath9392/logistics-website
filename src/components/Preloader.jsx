@@ -100,10 +100,15 @@ export default function Preloader() {
           </div>
         </div>
 
-        {/* Company Name */}
-        <div className="text-center mt-2">
-          <p className="text-sm font-semibold text-slate-400 tracking-widest uppercase">
-            {siteConfig.company.name}
+        {/* Company Logo */}
+        <div className="text-center mt-2 flex flex-col items-center gap-1">
+          <img
+            src={siteConfig.company.logo.imageSrc}
+            alt={siteConfig.company.logo.alt}
+            className="h-14 w-auto object-contain mix-blend-multiply"
+          />
+          <p className="text-xs font-semibold text-slate-500 tracking-widest uppercase">
+            Express Service
           </p>
         </div>
 
