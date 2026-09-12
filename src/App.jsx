@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import FloatingWidget from './components/FloatingWidget';
 import ServiceModal from './components/ServiceModal';
 import EnquireModal from './components/EnquireModal';
+import Preloader from './components/Preloader';
 
 export default function App() {
   const [isEnquireOpen, setIsEnquireOpen] = useState(false);
@@ -49,6 +50,9 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#fafbfc] text-slate-900 selection:bg-brand-500 selection:text-white">
       
+      {/* Animated Truck Preloader */}
+      <Preloader />
+
       {/* Top Navigation */}
       <Navbar 
         onOpenEnquire={() => handleOpenEnquire('')}
