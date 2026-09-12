@@ -82,12 +82,29 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
     }
   };
 
+  const headerRef = React.useRef(null);
+  const [navbarHeight, setNavbarHeight] = React.useState(88);
+
+  React.useEffect(() => {
+    const updateHeight = () => {
+      if (headerRef.current) {
+        setNavbarHeight(headerRef.current.offsetHeight);
+      }
+    };
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, [scrolled]);
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-white shadow-sm py-3 border-b border-slate-200/80' 
-        : 'bg-white py-4 sm:py-5 border-b border-slate-100'
-    }`}>
+    <header
+      ref={headerRef}
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white shadow-sm py-3 border-b border-slate-200/80' 
+          : 'bg-white py-4 sm:py-5 border-b border-slate-100'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
@@ -278,10 +295,11 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
         </div>
       </div>
 
-      {/* Backdrop overlay for mobile menu */}
+      {/* Backdrop overlay — starts exactly below navbar */}
       {mobileMenuOpen && (
         <div 
-          className="fixed inset-0 top-[60px] sm:top-[72px] bg-slate-950/50 backdrop-blur-xs z-30 lg:hidden"
+          className="fixed inset-x-0 bottom-0 bg-black/20 z-30 lg:hidden"
+          style={{ top: `${navbarHeight}px` }}
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
@@ -290,11 +308,11 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
       <div className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden relative z-40 ${
         mobileMenuOpen ? 'max-h-[85vh] opacity-100 border-b border-slate-200 bg-white shadow-xl' : 'max-h-0 opacity-0'
       }`}>
-        <div className="px-4 pt-3 pb-6 space-y-2 max-h-[80vh] overflow-y-auto">
+        <div className="px-4 pt-2 pb-4 space-y-0.5 max-h-[80vh] overflow-y-auto">
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
-            className="block px-3 py-2 rounded-lg text-base font-medium text-slate-800 hover:bg-slate-50"
+            className="block px-3 py-1.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
           >
             Home
           </a>
@@ -303,13 +321,13 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
           <div>
             <button
               onClick={() => toggleMobileAccordion('services')}
-              className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-base font-medium text-slate-800 hover:bg-slate-50"
+              className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
             >
               <span>Services</span>
               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileAccordions.services ? 'rotate-180' : ''}`} />
             </button>
             {mobileAccordions.services && (
-              <div className="pl-4 pr-2 py-1 space-y-1 bg-slate-50/50 rounded-xl my-1">
+              <div className="pl-3 pr-2 py-1 space-y-0 bg-slate-50/50 rounded-xl my-0.5">
                 {siteConfig.services.map((s) => (
                   <button
                     key={s.id}
@@ -317,7 +335,7 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
                       onSelectService(s);
                       setMobileMenuOpen(false);
                     }}
-                    className="w-full text-left py-2 px-2 text-sm text-slate-600 hover:text-brand-700 block font-medium"
+                    className="w-full text-left py-1.5 px-2 text-xs text-slate-600 hover:text-brand-700 block font-medium"
                   >
                     {s.title}
                   </button>
@@ -330,19 +348,19 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
           <div>
             <button
               onClick={() => toggleMobileAccordion('industries')}
-              className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-base font-medium text-slate-800 hover:bg-slate-50"
+              className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
             >
               <span>Industries</span>
               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileAccordions.industries ? 'rotate-180' : ''}`} />
             </button>
             {mobileAccordions.industries && (
-              <div className="pl-4 pr-2 py-1 space-y-1 bg-slate-50/50 rounded-xl my-1">
+              <div className="pl-3 pr-2 py-1 space-y-0 bg-slate-50/50 rounded-xl my-0.5">
                 {siteConfig.industries.map((ind) => (
                   <a
                     key={ind.id}
                     href="#industries"
                     onClick={(e) => handleNavClick(e, '#industries')}
-                    className="py-2 px-2 text-sm text-slate-600 hover:text-brand-700 block font-medium"
+                    className="py-1.5 px-2 text-xs text-slate-600 hover:text-brand-700 block font-medium"
                   >
                     {ind.title}
                   </a>
@@ -354,7 +372,7 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
           <a
             href="#why-us"
             onClick={(e) => handleNavClick(e, '#why-us')}
-            className="block px-3 py-2 rounded-lg text-base font-medium text-slate-800 hover:bg-slate-50"
+            className="block px-3 py-1.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
           >
             Why Us
           </a>
@@ -362,7 +380,7 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
           <a
             href="#about"
             onClick={(e) => handleNavClick(e, '#about')}
-            className="block px-3 py-2 rounded-lg text-base font-medium text-slate-800 hover:bg-slate-50"
+            className="block px-3 py-1.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
           >
             About
           </a>
@@ -370,12 +388,12 @@ export default function Navbar({ onOpenEnquire, onSelectService }) {
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="block px-3 py-2 rounded-lg text-base font-medium text-slate-800 hover:bg-slate-50"
+            className="block px-3 py-1.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
           >
             Contact
           </a>
 
-          <div className="pt-4 space-y-2 border-t border-slate-100">
+          <div className="pt-3 space-y-2 border-t border-slate-100">
             <a
               href={`tel:${siteConfig.contact.phoneRaw}`}
               className="w-full flex items-center justify-center px-4 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50"

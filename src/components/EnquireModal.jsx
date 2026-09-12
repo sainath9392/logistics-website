@@ -111,14 +111,9 @@ export default function EnquireModal({ isOpen, onClose, preselectedService = "" 
                   onChange={handleChange}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium"
                 >
-                  <option value="Full Truck Load (FTL)">Full Truck Load (FTL)</option>
-                  <option value="Partial Truck Load (PTL)">Partial Truck Load (PTL)</option>
-                  <option value="Warehousing">Warehousing & Storage</option>
-                  <option value="Distribution">Distribution & Last-Mile</option>
-                  <option value="Reverse Logistics">Reverse Logistics & Returns</option>
-                  <option value="Cold Storage-Transportation">Cold Storage-Transportation</option>
-                  <option value="Cold Storage-Warehousing">Cold Storage-Warehousing</option>
-                  <option value="Over Dimensional Cargo (ODC)">Over Dimensional Cargo (ODC)</option>
+                  {siteConfig.services.map(s => (
+                    <option key={s.id} value={s.title}>{s.title}</option>
+                  ))}
                 </select>
               </div>
 

@@ -160,7 +160,7 @@ export default function HeroSlider({ onOpenEnquire, onSelectService }) {
               {/* Slider Controls Bar (Manual buttons + 8 auto-slide dots) */}
               <div className="p-3 sm:p-4 flex items-center justify-between border-t border-white/10 bg-slate-950/90">
                 
-                {/* 8 Dot Indicators */}
+                {/* Slide Dot Indicators */}
                 <div className="flex items-center space-x-1 sm:space-x-1.5 flex-wrap py-1">
                   {slides.map((s, idx) => (
                     <button
