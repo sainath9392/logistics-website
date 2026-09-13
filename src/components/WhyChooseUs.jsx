@@ -60,6 +60,12 @@ export default function WhyChooseUs({ onOpenEnquire }) {
             <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-4">
               {siteConfig.company.title}
             </h3>
+            <div className="mb-5">
+              <p className="text-brand-300 text-xs font-bold uppercase tracking-widest mb-1">Who We Are</p>
+              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
+                {siteConfig.company.description}
+              </p>
+            </div>
             <div className="mb-3">
               <p className="text-brand-300 text-xs font-bold uppercase tracking-widest mb-1">Our Mission</p>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">

@@ -21,6 +21,7 @@ export const siteConfig = {
 
     mission: "Delivering seamless logistics solutions for businesses across diverse industries.",
     vision: "To be India's most trusted logistics partner, driving innovation in transportation.",
+    description: "Chrome Sai Express Service is a logistics service provider founded by industry veterans to transform road freight. Guided by our motto, \"DELIVERING FIRST,\" we combine advanced tracking technology, an extensive transportation network, and customized resources to make shipping seamless, efficient, and hassle-free.",
 
     // Logo configuration — update imageSrc to change everywhere at once
     logo: {
@@ -322,7 +323,7 @@ export const siteConfig = {
 
   // Footer Content
   footer: {
-    aboutText: "Chrome Sai Express Service provides reliable Full Truck Load, Partial Truck Load, Distribution, Reverse Logistics, and Over Dimensional Cargo transport services across all states in India.",
+    aboutText: "Chrome Sai Express Service is a logistics service provider founded by industry veterans to transform road freight. Guided by our motto, \"DELIVERING FIRST,\" we combine advanced tracking technology, an extensive transportation network, and customized resources to make shipping seamless, efficient, and hassle-free.",
     quickLinks: [
       { name: "About Us", href: "#about" },
       { name: "Services", href: "#services" },
