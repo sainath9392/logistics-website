@@ -85,7 +85,7 @@ export default function WhyChooseUs({ onOpenEnquire }) {
                 <div className="text-xs text-slate-400 mt-0.5">Network Coverage</div>
               </div>
               <div>
-                <div className="text-2xl font-black text-white">500+</div>
+                <div className="text-2xl font-black text-white">50+</div>
                 <div className="text-xs text-slate-400 mt-0.5">Happy Clients</div>
               </div>
               <div>

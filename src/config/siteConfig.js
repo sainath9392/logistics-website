@@ -129,28 +129,24 @@ export const siteConfig = {
   // Key Simple Numbers
   metrics: [
     {
-      icon: "Infinity",
-      value: "100%",
-      label: "Safe Delivery",
-      subtext: "Insured & Tracked Shipments"
+      icon: "Rocket",
+      value: "∞",
+      label: "Possibilities Ahead"
     },
     {
-      icon: "Users",
-      value: "500+",
-      label: "Happy Clients",
-      subtext: "Businesses Across India"
+      icon: "Handshake",
+      value: "50+",
+      label: "Clients Served"
     },
     {
       icon: "MapPin",
-      value: "Pan India",
-      label: "Network Reach",
-      subtext: "All States & Cities Covered"
+      value: "PAN India",
+      label: "Expanding Horizons"
     },
     {
-      icon: "Headphones",
+      icon: "PhoneCall",
       value: "24/7",
-      label: "Live Support",
-      subtext: "Call Us Anytime"
+      label: "Always On Support"
     }
   ],
 
