@@ -52,6 +52,13 @@ export const siteConfig = {
     workingHours: "24/7 Customer Support & Dispatch",
   },
 
+  // Form & Lead Delivery Configuration (Web3Forms)
+  form: {
+    // Generate your free Access Key at https://web3forms.com
+    // or set VITE_WEB3FORMS_ACCESS_KEY in .env file
+    web3formsAccessKey: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "",
+  },
+
   // Calls to Action
   actions: {
     primaryCTA: "Book a Truck",

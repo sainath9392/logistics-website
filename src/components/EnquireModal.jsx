@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { siteConfig } from '../config/siteConfig';
-import { X, Truck, CheckCircle2, Send, MapPin, Calendar, Building, Phone, Mail, User } from 'lucide-react';
+import { X, Truck, CheckCircle2, Send, MapPin, Calendar, Building, Phone, Mail, User, AlertCircle, MessageSquare } from 'lucide-react';
 
 export default function EnquireModal({ isOpen, onClose, preselectedService = "" }) {
   const [formData, setFormData] = useState({
@@ -17,6 +17,7 @@ export default function EnquireModal({ isOpen, onClose, preselectedService = "" 
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (preselectedService) {
@@ -31,20 +32,69 @@ export default function EnquireModal({ isOpen, onClose, preselectedService = "" 
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate submission to sales desk
-    setTimeout(() => {
+    setError(null);
+
+    const accessKey = siteConfig.form?.web3formsAccessKey || import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    // Graceful fallback for local development if access key isn't provided yet
+    if (!accessKey) {
+      console.info("Web3Forms access key not configured yet. Set VITE_WEB3FORMS_ACCESS_KEY in .env. Running demo submission.");
+      setTimeout(() => {
+        setLoading(false);
+        setSubmitted(true);
+      }, 700);
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New Freight Booking: ${formData.serviceType} (${formData.origin} to ${formData.destination})`,
+          from_name: "Chrome Sai Express Web Inquiry",
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          company: formData.company || "Not provided",
+          service_required: formData.serviceType,
+          pickup_origin: formData.origin,
+          drop_destination: formData.destination,
+          cargo_details: formData.cargoDetails || "Not provided",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 200 && data.success) {
+        setSubmitted(true);
+      } else {
+        throw new Error(data.message || "Failed to dispatch email. Please call us directly.");
+      }
+    } catch (err) {
+      console.error("Web3Forms error:", err);
+      setError(err.message || "Failed to submit form. Please check your connection or call us directly.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 800);
+    }
   };
 
   const handleReset = () => {
     setSubmitted(false);
+    setError(null);
     onClose();
   };
+
+  const whatsappMessage = encodeURIComponent(
+    `Hello Chrome Sai Express,\nI want to book a truck or get a freight quote.\n\n*Service:* ${formData.serviceType}\n*Route:* ${formData.origin || 'N/A'} -> ${formData.destination || 'N/A'}\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Cargo:* ${formData.cargoDetails || 'N/A'}`
+  );
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6">
@@ -88,17 +138,37 @@ export default function EnquireModal({ isOpen, onClose, preselectedService = "" 
               <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
                 Thank you, <span className="font-semibold text-slate-800">{formData.name}</span>. Our fleet dispatcher has received your request for <strong>{formData.serviceType}</strong> and will contact you at <strong>{formData.phone}</strong> shortly.
               </p>
-              <div className="pt-4">
+              <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
                 <button
                   onClick={handleReset}
-                  className="px-6 py-2.5 rounded-xl bg-brand-700 text-white text-sm font-semibold hover:bg-brand-800 shadow-md"
+                  className="px-6 py-2.5 rounded-xl bg-slate-100 text-slate-800 text-sm font-semibold hover:bg-slate-200 transition-colors"
                 >
                   Done
                 </button>
+                <a
+                  href={`https://wa.me/${siteConfig.contact.phoneRaw.replace(/[^0-9]/g, '')}?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-700 transition-colors shadow-md"
+                >
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  <span>Also Confirm on WhatsApp</span>
+                </a>
               </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+              {error && (
+                <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm flex items-start space-x-2">
+                  <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="font-semibold">{error}</p>
+                    <p className="mt-1 text-xs text-red-600">
+                      You can also reach our dispatch desk directly via <a href={`tel:${siteConfig.contact.phoneRaw}`} className="underline font-bold">Call</a> or <a href={`https://wa.me/${siteConfig.contact.phoneRaw.replace(/[^0-9]/g, '')}?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="underline font-bold">WhatsApp</a>.
+                    </p>
+                  </div>
+                </div>
+              )}
               
               {/* Service Selection */}
               <div>
