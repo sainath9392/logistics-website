@@ -57,9 +57,6 @@ export default function WhyChooseUs({ onOpenEnquire }) {
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-brand-300 text-xs font-semibold tracking-wider uppercase mb-4 border border-white/10">
               About Our Organization
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-4">
-              {siteConfig.company.title}
-            </h3>
             <div className="mb-5">
               <p className="text-brand-300 text-xs font-bold uppercase tracking-widest mb-1">Who We Are</p>
               <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
