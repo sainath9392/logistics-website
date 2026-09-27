@@ -1,36 +1,25 @@
 # =============================================
 # Chrome Sai Express Service - Apache Config
+# GoDaddy handles HTTPS redirect automatically
 # =============================================
 
 RewriteEngine On
 RewriteBase /
 
-# ---- 1. Force HTTPS + www ----
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule ^(.*)$ https://www.chromesai.com/$1 [L,R=301]
-
-# ---- 2. Explicitly allow assets folder to be served as-is ----
+# ---- Explicitly serve assets folder as-is (JS, CSS, images) ----
 RewriteRule ^assets/ - [L]
 
-# ---- 3. Allow actual files/directories to be served directly ----
+# ---- Serve actual existing files/directories directly ----
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# ---- 4. Everything else → React SPA ----
+# ---- Everything else → React SPA ----
 RewriteRule ^ /index.html [L]
-
-# ---- Security Headers ----
-<IfModule mod_headers.c>
-  Header always set X-Content-Type-Options "nosniff"
-  Header always set X-Frame-Options "SAMEORIGIN"
-  Header always set Referrer-Policy "strict-origin-when-cross-origin"
-</IfModule>
 
 # ---- Correct MIME Types ----
 <IfModule mod_mime.c>
-  AddType application/javascript .js
+  AddType application/javascript .js .mjs
   AddType text/css .css
 </IfModule>
 

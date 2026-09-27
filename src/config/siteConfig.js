@@ -37,9 +37,9 @@ export const siteConfig = {
   contact: {
     phone: "+91 98863 45860",
     phoneRaw: "+919886345860",
-    email: "karthikeyan@chromesai.in",
-    salesEmail: "karthikeyan@chromesai.in",
-    supportEmail: "karthikeyan@chromesai.in",
+    email: "karthikeyan@chromesai.com",
+    salesEmail: "karthikeyan@chromesai.com",
+    supportEmail: "karthikeyan@chromesai.com",
     address: "S-05, Silver Waves Prakruthi Apartment, Valagerehalli, K S Town, Bengaluru 560040, India",
     addressLine1: "S-05, Silver Waves Prakruthi Apartment",
     addressLine2: "Valagerehalli, K S Town",
